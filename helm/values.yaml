@@ -1,0 +1,16 @@
+# default maximum heap size to 10GB.
+maximum_heap_memory_size: "10G" 
+
+# default Initial heap size to 10GB.
+initial_heap_memory_size: "10G"
+
+
+appName: "minecraft"
+
+persistentVolume:
+  size: ""
+  accessMode: ""
+  reclaimPolicy: ""
+  storageClassName: ""
+  path: ""
+  nodeName: ""

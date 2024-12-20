@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.appName }}
+          image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 25565
+              name: {{ .Values.appName }}
+              protocol: TCP
+            - containerPort: 22
+              name: ssh
+              protocol: TCP
+          envFrom:
+            - secretRef:
+                name: postgresql-secret
+          resources:
+            limits:
+              cpu: 800m 
+              memory: 1000Mi 
+          volumeMounts:
+            - name: efs-volume
+              mountPath: /mnt/efs
+      volumes:
+        - name: efs-volume
+          persistentVolumeClaim:
+            claimName: efs-pvc
