@@ -31,9 +31,9 @@ spec:
               cpu: 800m 
               memory: 1000Mi 
           volumeMounts:
-            - name: efs-volume
-              mountPath: /mnt/efs
+            - name: {{ .Release.Name }}-pv
+              mountPath: /mnt/mc
       volumes:
-        - name: efs-volume
+        - name: {{ .Release.Name }}-pv
           persistentVolumeClaim:
-            claimName: efs-pvc
+            claimName: {{ .Release.Name }}-pvc
