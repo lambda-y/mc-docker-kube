@@ -11,3 +11,7 @@ However, having it in kubernetes gives us more fault tolerance and allows us to 
 ## Installation
 
 Unironically, this is a TODO lol, sorry I'm still putting this together :D
+
+1. Download minecraft server files
+2. Build docker image with server files copied into the image
+3. 
