@@ -18,18 +18,15 @@ spec:
           image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 25565
-              name: {{ .Values.appName }}
+              name: {{ .Values.appName }} 
               protocol: TCP
             - containerPort: 22
               name: ssh
               protocol: TCP
-          envFrom:
-            - secretRef:
-                name: postgresql-secret
           resources:
             limits:
-              cpu: 800m 
-              memory: 1000Mi 
+              cpu: 1100mn 
+              memory: {{ .Values.server_memory_size }}
           volumeMounts:
             - name: {{ .Release.Name }}-pv
               mountPath: /mnt/mc
