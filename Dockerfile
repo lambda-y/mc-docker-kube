@@ -1,9 +1,9 @@
-FROM openjdk:24-jdk-nanoserver
+FROM openjdk:24-jdk
 
 WORKDIR /minecraft-server
 
 # Copy the Minecraft server JAR and mod files
-COPY minecraft_server.jar mods /minecraft-server/
+COPY ./server /minecraft-server
 
 # Expose the server port (default: 25565)
 EXPOSE 25565
@@ -15,4 +15,5 @@ ENV XMX="10G"
 ENV XMS="10G" 
 
 # Command to run the server, using environment variables
-CMD ["java", "-Xmx$XMX", "-Xms$XMS", "-jar", "minecraft_server.jar", "nogui"]
+CMD ["java", "-Xmx8G", "-Xms6G", "-jar", "server.jar", "nogui"]
+# CMD tail -f /dev/null

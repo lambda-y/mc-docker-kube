@@ -1,0 +1,17 @@
+name: minecraft-server
+services:
+  minecraft:
+    tty: true
+    stdin_open: true
+    build:
+      dockerfile: ./Dockerfile
+    volumes:
+      - minecraft_data:/minecraft-server
+    ports:
+      - "25565:25565"
+    environment:
+      - .env
+    working_dir: /minecraft-server
+
+volumes:
+  minecraft_data: 
